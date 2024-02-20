@@ -7,4 +7,5 @@
     <string name="delete_action">Delete Tasks</string>
 
     <string name="delete_all_task">Delete All</string>
+    <string name="search_text">Search</string>
 </resources>
