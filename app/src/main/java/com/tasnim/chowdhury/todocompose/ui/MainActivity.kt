@@ -13,27 +13,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.tasnim.chowdhury.todocompose.navigation.SetupNavigation
 import com.tasnim.chowdhury.todocompose.ui.theme.ToDoComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private lateinit var navController: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ToDoComposeTheme {
-                Column(
-                    modifier = Modifier.fillMaxHeight().fillMaxWidth(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "Home",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp,
-                        color = Color.Blue,
-                    )
-                }
+                navController = rememberNavController()
+                SetupNavigation(navController = navController)
             }
         }
     }

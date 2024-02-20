@@ -5,10 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.tasnim.chowdhury.todocompose.data.models.ToDoTask
 import com.tasnim.chowdhury.todocompose.data.repositories.ToDoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
