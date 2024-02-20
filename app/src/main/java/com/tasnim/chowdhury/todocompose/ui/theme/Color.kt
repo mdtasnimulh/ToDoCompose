@@ -15,6 +15,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val Blue500 = Color(0xFF11399C)
+val Blue400 = Color(0xFF1A4CC7)
 
 val LowPriorityColor = Color(0xFF00C980)
 val MediumPriorityColor = Color(0xFFFFC114)
@@ -24,6 +25,10 @@ val NonePriorityColor = Color(0xFFFFFFFF)
 val LightGray = Color(0xFFFCFCFC)
 val MediumGray = Color(0xFF9C9C9C)
 val DarkGray = Color(0xFF141414)
+
+val ColorScheme.FabBackgroundColor: Color
+    @Composable
+    get() = if (!isSystemInDarkTheme()) Blue400 else Blue500
 
 val ColorScheme.TopAppBarContentColor: Color
 @Composable
