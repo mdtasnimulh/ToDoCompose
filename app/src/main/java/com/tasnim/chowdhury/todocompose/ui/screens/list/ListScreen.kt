@@ -1,6 +1,10 @@
 package com.tasnim.chowdhury.todocompose.ui.screens.list
 
+import android.annotation.SuppressLint
 import android.util.Log
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
@@ -16,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.tasnim.chowdhury.todocompose.R
 import com.tasnim.chowdhury.todocompose.ui.theme.FabBackgroundColor
 import com.tasnim.chowdhury.todocompose.ui.viewModel.SharedViewModel
@@ -42,11 +47,17 @@ fun ListScreen(
                 searchTextState = searchTextState
             )
         },
-        content = {
-            ListContent(
-                tasks = allTask,
-                navigateToTaskScreen = navigateToTaskScreen
-            )
+        content = { paddingValues ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                ListContent(
+                    tasks = allTask,
+                    navigateToTaskScreen = navigateToTaskScreen
+                )
+            }
         },
         floatingActionButton = {
             ListFab(onFabClicked = navigateToTaskScreen)
