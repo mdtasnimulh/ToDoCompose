@@ -8,10 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.tasnim.chowdhury.todocompose.data.models.Priority
 import com.tasnim.chowdhury.todocompose.data.models.ToDoTask
 import com.tasnim.chowdhury.todocompose.data.repositories.ToDoRepository
+import com.tasnim.chowdhury.todocompose.util.Action
 import com.tasnim.chowdhury.todocompose.util.Constants.MAX_TITLE_LENGTH
 import com.tasnim.chowdhury.todocompose.util.RequestState
 import com.tasnim.chowdhury.todocompose.util.SearchAppBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -19,7 +21,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SharedViewModel @Inject constructor(private val repository: ToDoRepository): ViewModel() {
+class SharedViewModel @Inject constructor(private val repository: ToDoRepository) : ViewModel() {
+
+    val action: MutableState<Action> = mutableStateOf(Action.NO_ACTION)
 
     val id: MutableState<Int> = mutableIntStateOf(0)
     val title: MutableState<String> = mutableStateOf("")
@@ -56,6 +60,70 @@ class SharedViewModel @Inject constructor(private val repository: ToDoRepository
                 _selectedTask.value = task
             }
         }
+    }
+
+    private fun addTask() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val toDoTask = ToDoTask(
+                title = title.value,
+                description = description.value,
+                priority = priority.value
+            )
+            repository.addTask(toDoTask = toDoTask)
+        }
+    }
+
+    private fun updateTask() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val toDoTask = ToDoTask(
+                id = id.value,
+                title = title.value,
+                description = description.value,
+                priority = priority.value
+            )
+            repository.updateTask(toDoTask = toDoTask)
+        }
+    }
+
+    private fun deleteTask() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val toDoTask = ToDoTask(
+                id = id.value,
+                title = title.value,
+                description = description.value,
+                priority = priority.value
+            )
+            repository.deleteTask(toDoTask = toDoTask)
+        }
+    }
+
+    fun handleDatabaseActions(action: Action) {
+        when (action) {
+            Action.ADD -> {
+                addTask()
+            }
+
+            Action.UPDATE -> {
+                updateTask()
+            }
+
+            Action.DELETE -> {
+                deleteTask()
+            }
+
+            Action.DELETE_ALL -> {
+
+            }
+
+            Action.UNDO -> {
+
+            }
+
+            else -> {
+
+            }
+        }
+        this.action.value = Action.NO_ACTION
     }
 
     fun updateTaskField(selectedTask: ToDoTask?) {
