@@ -8,4 +8,9 @@
 
     <string name="delete_all_task">Delete All</string>
     <string name="search_text">Search</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="close_icon">Close Icon</string>
+    <string name="task_text">Tasks</string>
+    <string name="empty_list_icon">Empty List Image</string>
+    <string name="no_task_found">No Task Found</string>
 </resources>

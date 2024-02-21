@@ -26,6 +26,14 @@ val LightGray = Color(0xFFFCFCFC)
 val MediumGray = Color(0xFF9C9C9C)
 val DarkGray = Color(0xFF141414)
 
+val ColorScheme.TaskItemTextColor: Color
+    @Composable
+    get() = if (!isSystemInDarkTheme()) Color.DarkGray else LightGray
+
+val ColorScheme.TaskItemBackgroundColor: Color
+    @Composable
+    get() = if (!isSystemInDarkTheme()) Color.White else DarkGray
+
 val ColorScheme.FabBackgroundColor: Color
     @Composable
     get() = if (!isSystemInDarkTheme()) Blue400 else Blue500
