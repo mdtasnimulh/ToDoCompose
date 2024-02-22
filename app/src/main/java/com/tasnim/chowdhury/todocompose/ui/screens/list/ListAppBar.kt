@@ -47,7 +47,6 @@ import com.tasnim.chowdhury.todocompose.ui.theme.Typography
 import com.tasnim.chowdhury.todocompose.ui.viewModel.SharedViewModel
 import com.tasnim.chowdhury.todocompose.util.Action
 import com.tasnim.chowdhury.todocompose.util.SearchAppBarState
-import com.tasnim.chowdhury.todocompose.util.TrailingIconState
 
 @Composable
 fun ListAppBar(
@@ -232,10 +231,6 @@ fun SearchAppBar(
     onCloseClicked: () -> Unit,
     onSearchClicked: (String) -> Unit
 ) {
-    var trailingIconState by remember {
-        mutableStateOf(TrailingIconState.READY_TO_DELETE)
-    }
-
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -276,19 +271,10 @@ fun SearchAppBar(
                 IconButton(
                     modifier = Modifier,
                     onClick = {
-                        when(trailingIconState) {
-                            TrailingIconState.READY_TO_DELETE -> {
-                                onTextChange("")
-                                trailingIconState = TrailingIconState.READY_TO_CLOSE
-                            }
-                            TrailingIconState.READY_TO_CLOSE -> {
-                                if (text.isNotEmpty()) {
-                                    onTextChange("")
-                                } else {
-                                    onCloseClicked()
-                                    trailingIconState = TrailingIconState.READY_TO_DELETE
-                                }
-                            }
+                        if (text.isNotEmpty()) {
+                            onTextChange("")
+                        } else {
+                            onCloseClicked()
                         }
                     }
                 ) {
