@@ -85,6 +85,10 @@ fun ListScreen(
                     highPriorityTasks = highPriorityTasks,
                     sortState = sortState,
                     searchAppBarState = searchAppBarState,
+                    onSwipeToDelete = { action, task ->
+                        sharedViewModel.action.value = action
+                        sharedViewModel.updateTaskField(selectedTask = task)
+                    },
                     navigateToTaskScreen = navigateToTaskScreen
                 )
             }
@@ -142,11 +146,12 @@ fun DisplaySnackBar(
     }
 }
 
-private fun setMessage(action: Action, taskTitle: String) : String {
-    return when(action) {
+private fun setMessage(action: Action, taskTitle: String): String {
+    return when (action) {
         Action.DELETE_ALL -> {
             "All Task Removed"
         }
+
         else -> {
             "${action.name}: $taskTitle"
         }
