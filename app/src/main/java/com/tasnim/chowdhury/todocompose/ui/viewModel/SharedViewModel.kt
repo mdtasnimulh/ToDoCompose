@@ -174,28 +174,20 @@ class SharedViewModel @Inject constructor(
             Action.ADD -> {
                 addTask()
             }
-
             Action.UPDATE -> {
                 updateTask()
             }
-
             Action.DELETE -> {
                 deleteTask()
             }
-
             Action.DELETE_ALL -> {
                 deleteAllTasks()
             }
-
             Action.UNDO -> {
                 addTask()
             }
-
-            else -> {
-
-            }
+            else -> {}
         }
-        this.action.value = Action.NO_ACTION
     }
 
     fun updateTaskField(selectedTask: ToDoTask?) {
