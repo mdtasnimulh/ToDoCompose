@@ -6,7 +6,7 @@
     <string name="sort_action">Sort Tasks</string>
     <string name="delete_action">Delete Tasks</string>
 
-    <string name="delete_all_task">Delete All</string>
+    <string name="delete_all">Delete All</string>
     <string name="search_text">Search</string>
     <string name="search_icon">Search Icon</string>
     <string name="close_icon">Close Icon</string>
@@ -23,4 +23,11 @@
     <string name="priority_dropdown_label">PRIORITY_DROPDOWN</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete_task">Remove \'%1$s\'?</string>
+    <string name="delete_task_confirmation">Are you sure you want to remove \'%1$s\'?</string>
+    <string name="delete_all_task">Remove All Tasks?</string>
+    <string name="delete_all_task_confirmation">Are you sure you want to remove all tasks? There is no going back after this action.</string>
 </resources>
