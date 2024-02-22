@@ -1,5 +1,6 @@
 package com.tasnim.chowdhury.todocompose.ui.screens.list
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -60,7 +61,9 @@ fun ListAppBar(
                 onSearchClicked = {
                     sharedViewModel.searchAppBarState.value = SearchAppBarState.OPENED
                 },
-                onSortClicked = {},
+                onSortClicked = {
+                    sharedViewModel.persistSorState(it)
+                },
                 onDeleteAllConfirmed = {
                     sharedViewModel.action.value = Action.DELETE_ALL
                 }
@@ -159,6 +162,7 @@ fun SortAction(
             tint = MaterialTheme.colorScheme.TopAppBarContentColor
         )
         DropdownMenu(
+            modifier = Modifier.background(color = MaterialTheme.colorScheme.background),
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
