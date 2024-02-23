@@ -26,10 +26,6 @@ val MediumPriorityColor = Color(0xFFFFC114)
 val HighPriorityColor = Color(0xFFFF4646)
 val NonePriorityColor = MediumGray
 
-val ColorScheme.splashScreenBackground: Color
-    @Composable
-    get() = if (!isSystemInDarkTheme()) Blue400 else Color.Black
-
 val ColorScheme.TaskItemTextColor: Color
     @Composable
     get() = if (!isSystemInDarkTheme()) Color.DarkGray else LightGray
