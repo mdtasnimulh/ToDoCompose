@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.tasnim.chowdhury.todocompose.data.models.Priority
@@ -22,9 +21,9 @@ fun TaskScreen(
     sharedViewModel: SharedViewModel,
     navigateToListScreen: (Action) -> Unit
 ) {
-    val title: String by sharedViewModel.title
-    val description: String by sharedViewModel.description
-    val priority: Priority by sharedViewModel.priority
+    val title: String = sharedViewModel.title
+    val description: String = sharedViewModel.description
+    val priority: Priority = sharedViewModel.priority
 
     val context = LocalContext.current
 
@@ -62,11 +61,11 @@ fun TaskScreen(
                     },
                     description = description,
                     onDescriptionChange = { newDescription ->
-                        sharedViewModel.description.value = newDescription
+                        sharedViewModel.updateDescription(newDescription = newDescription)
                     },
                     priority = priority,
                     onPrioritySelected = { newPriority ->
-                        sharedViewModel.priority.value = newPriority
+                        sharedViewModel.updatePriority(newPriority = newPriority)
                     }
                 )
             }
